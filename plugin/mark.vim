@@ -140,7 +140,7 @@ if !hasmapto('<Plug>MarkRegex', 'v')
 	vmap <unique> <silent> <leader>r <Plug>MarkRegex
 endif
 if !hasmapto('<Plug>MarkClear', 'n')
-	nmap <unique> <silent> <leader>n <Plug>MarkClear
+	nmap <unique> <silent> <leader>n <Plug>MarkClearAll
 endif
 
 nnoremap <silent> <Plug>MarkSet   :call
@@ -153,6 +153,8 @@ vnoremap <silent> <Plug>MarkRegex <c-\><c-n>:call
 	\ <sid>MarkRegex(<sid>GetVisualSelectionEscaped("N"))<cr>
 nnoremap <silent> <Plug>MarkClear :call
 	\ <sid>DoMark(<sid>CurrentMark())<cr>
+nnoremap <silent> <Plug>MarkClearAll :call
+	\ <sid>DoMark()<cr>
 
 " SEARCHING
 "
