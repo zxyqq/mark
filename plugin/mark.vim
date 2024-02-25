@@ -103,6 +103,8 @@ if &t_Co < 256
 	hi MarkWord4 guifg=Black ctermfg=Black guibg=#00D7FF ctermbg=Cyan
 	hi MarkWord5 guifg=White ctermfg=White guibg=#0087FF ctermbg=Blue
 	hi MarkWord6 guifg=White ctermfg=White guibg=#AF00FF ctermbg=Magenta
+	hi MarkWord7 guifg=White ctermfg=White guibg=Brown ctermbg=Brown
+	hi MarkWord8 guifg=White ctermfg=White guibg=LightRed ctermbg=LightRed
 else
 	exec "hi MarkWord1 guifg=White ctermfg=White guibg=#FF0000 ctermbg=".s:RGB(5,0,0)
 	exec "hi MarkWord2 guifg=Black ctermfg=Black guibg=#FFD700 ctermbg=".s:RGB(5,4,0)
@@ -124,10 +126,12 @@ set cpo&vim
 " Default bindings
 
 if !hasmapto('<Plug>MarkSet', 'n')
+	nmap <unique> <silent> <MiddleMouse> <LeftMouse><Plug>MarkSet
 	nmap <unique> <silent> <leader>m <Plug>MarkSet
 endif
 if !hasmapto('<Plug>MarkSet', 'v')
 	vmap <unique> <silent> <leader>m <Plug>MarkSet
+	vmap <unique> <silent> <MiddleMouse> <Plug>MarkSet
 endif
 if !hasmapto('<Plug>MarkRegex', 'n')
 	nmap <unique> <silent> <leader>r <Plug>MarkRegex
@@ -270,6 +274,7 @@ endfunction
 
 " return the word under or before the cursor
 function! s:PrevWord()
+	return expand("<cword>")
 	let line = getline(".")
 	if line[col(".") - 1] =~ '\w'
 		return expand("<cword>")
