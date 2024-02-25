@@ -126,13 +126,20 @@ set cpo&vim
 " Default bindings
 
 if !hasmapto('<Plug>MarkSet', 'n')
-	nmap <unique> <silent> <MiddleMouse> <LeftMouse><Plug>MarkSet
 	nmap <unique> <silent> <leader>m <Plug>MarkSet
 endif
 if !hasmapto('<Plug>MarkSet', 'v')
 	vmap <unique> <silent> <leader>m <Plug>MarkSet
+endif
+
+if exists('g:vscode')
+	nmap <unique> <silent> <space> <Plug>MarkSet
+	vmap <unique> <silent> <space> <Plug>MarkSet
+else
+	nmap <unique> <silent> <MiddleMouse> <LeftMouse><Plug>MarkSet
 	vmap <unique> <silent> <MiddleMouse> <Plug>MarkSet
 endif
+
 if !hasmapto('<Plug>MarkRegex', 'n')
 	nmap <unique> <silent> <leader>r <Plug>MarkRegex
 endif
