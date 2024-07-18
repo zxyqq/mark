@@ -452,6 +452,9 @@ endfunction
 
 " update mark colors
 function! s:UpdateMark()
+	if (&ma == 0)
+		return
+	endif
 	" define variables if they don't exist
 	call s:InitMarkVariables()
 
